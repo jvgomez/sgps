@@ -1,0 +1,17 @@
+SGPS Project C++ Library Repository
+
+in build folder:
+
+$ cmake ../src/
+$ make
+$ ./sgps ../../data/
+
+
+http://sgpsproject.sourceforge.net/wiki
+
+Lincensed under Creative Commons Attribution Share-Alike 3.0
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Authors: Javier V. Gómez jvgomez _at_ ing.uc3m.es
+	 Isaac Rivero    100081108 _at_ ing.uc3m.es
+

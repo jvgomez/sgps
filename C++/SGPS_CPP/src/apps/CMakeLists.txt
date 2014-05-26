@@ -1,0 +1,2 @@
+ADD_SUBDIRECTORY(sgps_plotday)
+ADD_SUBDIRECTORY(sgps_sgpstest)
