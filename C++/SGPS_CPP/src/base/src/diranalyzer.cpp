@@ -244,15 +244,8 @@ string DirAnalyzer::createDir(const string namedir){
 
     Options * opt = Options::Instance();
 
-    struct passwd *pw = getpwuid(getuid());
-    //const char *homedir = pw->pw_dir;
-    //string name = homedir;
-
-    //string path = name + "./output/";
-    string path = "../output/";
-
-    string total;
-    total = path +namedir;
+    string total, path("../output/");
+    total = path + namedir;
 
     ifstream r;
     r.open(path.c_str());
