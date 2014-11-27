@@ -238,7 +238,7 @@ void Plotter::histogram (vector<Coordinates> &errorPercent){
 	g2.set_xlabel("Latitude error (%)");
 	g2.cmd("set boxwidth 0.8");
 	g2.cmd("set style fill solid 0.8 border -1");
-	g2.cmd("plot '~/Escritorio/output/histogram_lat.dat' using 2:xtic(1) w boxes lc rgb 'blue' title 'Latitude'");
+    g2.cmd("plot 'histogram_lat.dat' using 2:xtic(1) w boxes lc rgb 'blue' title 'Latitude'");
 	
 	
 	g3.set_title("Histogram Percent Longitude");
@@ -247,7 +247,7 @@ void Plotter::histogram (vector<Coordinates> &errorPercent){
 	g3.set_xlabel("Longitude error (%)");
 	g3.cmd("set boxwidth 0.8");
 	g3.cmd("set style fill solid 0.8 border -1");
-	g3.cmd("plot '~/Escritorio/output/histogram_long.dat' using 2:xtic(1) w boxes lc rgb 'green' title 'Longitude'");
+    g3.cmd("plot 'histogram_long.dat' using 2:xtic(1) w boxes lc rgb 'green' title 'Longitude'");
 	
 	
 	//ofstream hist;
