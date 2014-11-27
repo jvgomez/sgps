@@ -29,7 +29,7 @@ public:
 	CelestialModel();
 	virtual ~CelestialModel();
 
-	static Coordinates ForwardCelestialModel(Day &);
+    static Coordinates inverseCelestialModel(Day &);
 
 private:
 	//AstroAlg    basicAlg; Used without objects.

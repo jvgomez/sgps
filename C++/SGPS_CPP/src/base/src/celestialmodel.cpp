@@ -35,7 +35,7 @@ CelestialModel::~CelestialModel() {
 
 }
 
-Coordinates CelestialModel::ForwardCelestialModel(Day & d) {
+Coordinates CelestialModel::inverseCelestialModel(Day & d) {
 	Coordinates c;
 	float sr = d.getSunrise();
 	float ss = d.getSunset();

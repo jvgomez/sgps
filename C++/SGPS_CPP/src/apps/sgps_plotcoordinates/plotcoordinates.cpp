@@ -2,9 +2,7 @@
 #include <vector>
 #include <boost/progress.hpp>
 
-
-#include <sgps/sgps.h>
-
+#include "../../base/include/sgps.h"
 
 using namespace std;
 
@@ -17,6 +15,7 @@ int main (int argc, char* argv[]) {
     Day d = dir.extractDay(argv[1]);
 
     d.setSGPSCoordinates(CelestialModel::inverseCelestialModel(d));
+    d.getError();
 
     Plotter::plotCoordinatesDay(d, argv[2]);
 

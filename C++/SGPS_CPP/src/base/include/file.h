@@ -40,140 +40,138 @@
 class File {
 public:
 
-	/**
-	 * Not used.
-	 * */
-	File();
+    /**
+     * Not used.
+     * */
+    File();
 
-	/**
-	 * Overload of the constructor in order to get automatically all the
-	 * features of a file giving the path to the file.
-	 *
-	 * @param p path of the file.
-	 * */
-	File(const boost::filesystem::path);
+    /**
+     * Overload of the constructor in order to get automatically all the
+     * features of a file giving the path to the file.
+     *
+     * @param p path of the file.
+     * */
+    File(const boost::filesystem::path);
 
-	/**
-	 * Not used.
-	 * */
-	virtual ~File();
+    /**
+     * Not used.
+     * */
+    virtual ~File();
 
-	/**
-	 * Method to set the name
-	 * @param n name of the file.
-	 * @see getName()
-	 * */
-	void setName(std::string n) 			{name=n;}
+    /**
+     * Method to set the name
+     * @param n name of the file.
+     * @see getName()
+     * */
+    void setName(std::string n) 			{name=n;}
 
-	/**
-	 * Method to set the path
-	 * @param p path of the file.
-	 * @see getPath()
-	 * */
-	void setPath(std::string p) 			{ppath=p;}
+    /**
+     * Method to set the path
+     * @param p path of the file.
+     * @see getPath()
+     * */
+    void setPath(std::string p) 			{ppath=p;}
 
-	/**
-	 * Method to set the size
-	 * @param s size of the file.
-	 * @see getSize()
-	 * */
-	void setSize (unsigned int s) 	{size=s;}
+    /**
+     * Method to set the size
+     * @param s size of the file.
+     * @see getSize()
+     * */
+    void setSize (unsigned int s) 	{size=s;}
 
-	/**
-	 * Method to get the name of the file.
-	 * @return name of the file as a string.
-	 * @see setName()
-	 * */
-	std::string getName() const			{return name;}
+    /**
+     * Method to get the name of the file.
+     * @return name of the file as a string.
+     * @see setName()
+     * */
+    std::string getName() const			{return name;}
 
-	/**
-	 * Method to get the path of the file.
-	 * @return path of the file as a string.
-	 * @see setPath()
-	 * */
-	std::string getPath() const			{return ppath;}
+    /**
+     * Method to get the path of the file.
+     * @return path of the file as a string.
+     * @see setPath()
+     * */
+    std::string getPath() const			{return ppath;}
 
-	/**
-	 * Method to get the size of the file.
-	 * @return size of the file in bits.
-	 * @see setSize()
-	 * */
-	unsigned int getSize() const		{return size;}
+    /**
+     * Method to get the size of the file.
+     * @return size of the file in bits.
+     * @see setSize()
+     * */
+    unsigned int getSize() const		{return size;}
 
-	//TODO: change ::info method by << operator: cout<<day;
-	virtual void info () const;
-
-	
-	/**
-	 * Reads the file getting all the desired parameters into a Day class.
-	 * @param saveData true: will save the times and light vectors into the Day class (this consumes lots of memory, use
-	 * only when necessary.
-	 * 
-	 * @return a Day instance containing all the information required for that day.
-	 * */
-	virtual Day read (bool saveData = false);
-	//Day readGeneric (bool saveData=false);
-
-	//TODO: convert to pure virtual functions.
-	//NOTE: this functions should not be into File classes. However, the way the sunrise and sunset
-	//are computed depend on how the file is (since the file is the hardware-dependent).
-	/**
-	 * Method to get sunrise of a day.
-	 * @return sunrise.
-	 * @param times of a day.
-	 * @param brightness values.
-	 * */
-	virtual float findSunrise(const std::vector<float> &, const std::vector<float> &);
-	/**
-	 * Method to get sunset of a day.
-	 * @return sunset.
-	 * @param times of a day.
-	 * @param brightness values.
-	 * */
-	virtual float findSunset(const std::vector<float> &, const std::vector<float> &);
-
-	/**
-	 * Method to get options skipfile if file is invalid
-	 * @param skipfile option of invlaid file.
-	 * @see getSkipFile()
-	 * */
-	void setSkipFile (int skip) 			{skipFile=skip;}
-	/**
-	 * Method to get options skipfile if file is invalid
-	 * @return skipfile option of invlaid file.
-	 * @see setSkipFile()
-	 * */
-	int getSkipFile()						{return skipFile;}
-	
-	/**
-	 * Method to get times vector.
-	 * @return times vector
-	 * @see getValues()
-	 * */
-	std::vector <float> getTimes() 			{return times;}
-	/**
-	 * Method to get brightness values vector.
-	 * @return brightness values vector
-	 * @see getTimes()
-	 * */
-	std::vector <float> getValues() 		{return values;}
-
-protected:
-	std::string name;
-	std::string ppath; //It is ppath because path is a type of the boost filesystem.
-	unsigned int size;
-	
-	int skipFile;
-	float sslimit;
-	
-	std::vector <float> times;
-	std::vector <float> values;
-	
+    //TODO: change ::info method by << operator: cout<<day;
+    virtual void info () const;
 
 
-	//There is not a vector to store measurements to avoid innecesary data. Add if needed.
+    /**
+     * Reads the file getting all the desired parameters into a Day class.
+     * @param saveData true: will save the times and light vectors into the Day class (this consumes lots of memory, use
+     * only when necessary.
+     *
+     * @return a Day instance containing all the information required for that day.
+     * */
+    virtual Day read (bool saveData = false);
+    //Day readGeneric (bool saveData=false);
+
+    //TODO: convert to pure virtual functions.
+    //NOTE: this functions should not be into File classes. However, the way the sunrise and sunset
+    //are computed depend on how the file is (since the file is the hardware-dependent).
+    /**
+     * Method to get sunrise of a day.
+     * @return sunrise.
+     * @param times of a day.
+     * @param brightness values.
+     * */
+    virtual float findSunrise(const std::vector<float> &, const std::vector<float> &);
+    /**
+     * Method to get sunset of a day.
+     * @return sunset.
+     * @param times of a day.
+     * @param brightness values.
+     * */
+    virtual float findSunset(const std::vector<float> &, const std::vector<float> &);
+
+    /**
+     * Method to get options skipfile if file is invalid
+     * @param skipfile option of invlaid file.
+     * @see getSkipFile()
+     * */
+    void setSkipFile (int skip) 			{skipFile=skip;}
+    /**
+     * Method to get options skipfile if file is invalid
+     * @return skipfile option of invlaid file.
+     * @see setSkipFile()
+     * */
+    int getSkipFile()						{return skipFile;}
+
+    /**
+     * Method to get times vector.
+     * @return times vector
+     * @see getValues()
+     * */
+    std::vector <float> getTimes() 			{return times;}
+    /**
+     * Method to get brightness values vector.
+     * @return brightness values vector
+     * @see getTimes()
+     * */
+    std::vector <float> getValues() 		{return values;}
+
+    protected:
+    std::string name;
+    std::string ppath; //It is ppath because path is a type of the boost filesystem.
+    unsigned int size;
+
+    int skipFile;
+    float sslimit;
+
+    std::vector <float> times;
+    std::vector <float> values;
+
+
+
+    //There is not a vector to store measurements to avoid innecesary data. Add if needed.
 };
-
-
 
 #endif /* FILE_H_ */

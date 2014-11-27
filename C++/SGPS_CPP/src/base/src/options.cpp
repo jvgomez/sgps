@@ -29,12 +29,12 @@ using namespace std;
 Options * Options::instance_ = 0;	// Pointer initialised to 0.
 
 Options * Options::Instance () {
-	if (instance_ == 0) {			// First call to this class?
-		instance_ = new Options; 	// If yes, we instantiate the class.
-		atexit(&destroyOptions);  
-	}
-		
-	return instance_;
+    if (instance_ == 0) {			// First call to this class?
+        instance_ = new Options; 	// If yes, we instantiate the class.
+        //atexit(&destroyOptions);
+    }
+
+    return instance_;
 }
 
 
@@ -43,18 +43,18 @@ Options::Options() {
 }
 
 void Options::addFileType(const string &s) {
-	if (!isFileType(s)) //Check that is not already included.
-		fileTypes_.push_back(s);
+    if (!isFileType(s)) //Check that is not already included.
+        fileTypes_.push_back(s);
 }
 
 
 bool Options::isFileType(const string &s) {
-	for (vector<string>::iterator it (fileTypes_.begin()); it != fileTypes_.end(); ++it) {
-		if (it->compare(s) == 0)
-			return true;
-	}
-	
-	return false;
+    for (vector<string>::iterator it (fileTypes_.begin()); it != fileTypes_.end(); ++it) {
+        if (it->compare(s) == 0)
+            return true;
+    }
+
+    return false;
 }
 
 

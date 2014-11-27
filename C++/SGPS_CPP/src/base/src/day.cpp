@@ -34,33 +34,23 @@ Day::~Day() {
 }
 
 void Day::info () const {
-	cout <<"Day info: " << nday << " " << year << ". Transitions: " << transitions << ". Sunrise: " << sunrise <<  " Sunset: " << sunset << endl;
+    cout <<"Day info: " << nday << " " << year << ". Transitions: " << transitions << ". Sunrise: " << sunrise <<  " Sunset: " << sunset << endl;
 }
 
 
 void Day::getError(){
-	
-		
-	errorDegree = AstroAlg::errorDeg(realCoord, sgpsCoord);
-	
-	errorKm1 = AstroAlg::errorHaversine(realCoord, sgpsCoord, errorDegree);
-	
-	errorKm2 = AstroAlg::errorKm(realCoord, sgpsCoord, errorDegree);
-	
-	errorPercent = AstroAlg::errorPerc(errorDegree);
-	
-	Options * opt =  Options::Instance();
-	
-	if (opt->getLoggerOp() == true){
-		Logger::errorCoord (realCoord, sgpsCoord, errorDegree, errorKm1, errorKm2, errorPercent, station, nday, year);
-	}
-	
-	
+    errorDegree = AstroAlg::errorDeg(realCoord, sgpsCoord);
+    errorKm1 = AstroAlg::errorHaversine(realCoord, sgpsCoord, errorDegree);
+    errorKm2 = AstroAlg::errorKm(realCoord, sgpsCoord, errorDegree);
+    errorPercent = AstroAlg::errorPerc(errorDegree);
+
+    Options * opt =  Options::Instance();
+    if (opt->getLoggerOp()){
+        Logger::errorCoord (realCoord, sgpsCoord, errorDegree, errorKm1, errorKm2, errorPercent, station, nday, year);
+    }
 }
 
 
 void Day::plotDay () {
-	
-		Plotter::plotDay (times_, values_, nday, year);
-	
+    Plotter::plotDay (times_, values_, nday, year);
 }
