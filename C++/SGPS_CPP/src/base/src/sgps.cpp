@@ -140,7 +140,6 @@ void SGPS::parseArguments (int argc, char* argv[]){
         }
 
         index = Console::parseArguments(argc, argv, "-c", v);
-
         if (index > 1)
             opt-> setConsoleOn();
 

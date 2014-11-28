@@ -41,7 +41,6 @@ File::File(const path p, float sr, float ss)
     size  = file_size(p);
     sslimit = ss;
     srlimit = sr;
-    std::cout << " File const " << sr << "  " << ss << std::endl;
 }
 
 File::~File()
@@ -80,46 +79,23 @@ Day File::read (bool saveData) {
 
 
         //The file pointer is moved to the day position.
-        int day, moth;
-        stored>>day>>moth;
-        if (moth==3){//Si el mes es 3(marzo), cuento los 28 dias de febrero, y los 31 de enero
-            day = day +28+31;
-        }
-        else if (moth<=7 && moth%2==0 && moth !=2){
-            day = day + (moth/2)*31 + (moth/2-1)*30 + 28;//Si el mes es par antes de julio, cuento la mitad de meses 31, febrero con 28, y los demas con 30
-        }
-        else if (moth>7 && moth%2==0){
-            day = day + (moth/2+1)*31 + (moth/2-2)*30 + 28;//Si el mes es par despues de julio, cuento la mitad mas 1 de meses 31(por agosto), febrero con 28, y los demas con 30
-        }
-        else if (moth<=7 && moth%2!=0 && moth !=1 && moth !=3){
-            day = day + (moth/2-1)*30 + (moth/2+1)*31 + 28;
-        }
-        else if (moth>7 && moth%2!=0){
-            day = day + (moth/2-1)*30 + (moth/2+1)*31 + 28;
-        }
-        else if (moth == 1){
-            day = day;
-        }
-        else if (moth == 2){
-            day = day + 31;
-        }
+        int day, month, year;
+        stored>>day>>month>>year;
+        // http://www.epochconverter.com/epoch/daynumbers.php
+        day = day + ((month < 3) ?
+        (int)((306 * month - 301) / 10) :
+        (int)((306 * month - 913) / 10) + ((year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 60 : 59));
         d.setDay(day);
-
-
-        //The file pointer is moved to the year position.
-        int year;
-        stored >> year;
         d.setYear(year);
 
-
-        float hour, min, seconds, auxvalues, transitions=0;
+        float hour, min, seconds, auxvalues;
         string hour1, hour2;
         while(!stored.eof())
         {
             string auxhour;
             stored >> auxhour;
 
-            hour1=auxhour[0];//Do a string with the numbers tath I want
+            hour1=auxhour[0];//Do a string with the numbers that I want
             hour2=auxhour[1];
             hour1=hour1 + hour2;
 

@@ -15,3 +15,7 @@ http://creativecommons.org/licenses/by-sa/3.0/
 Authors: Javier V. Gómez jvgomez _at_ ing.uc3m.es
 	 Isaac Rivero    100081108 _at_ ing.uc3m.es
 
+
+TODO:
+- For some reaons, the option do not work in any other. For instance, -s val val -c will not work properly
+change for boost_options
