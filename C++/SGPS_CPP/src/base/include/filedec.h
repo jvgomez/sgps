@@ -1,8 +1,8 @@
 /*
- * huefile.h
- * Helper class to log results data.
+ * file.h
+ * Class to store file data (size, path...)
  * Part of the SGPS Project. http://www.sgpsproject.org
- * Copyright (C) 2013 Javier V. Gómez, Isaac Rivero
+ * Copyright (C) 2012 Javier V. Gómez
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,34 +18,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef FILEDEC_H_
+#define FILEDEC_H_
 
-#ifndef HUEFILE_H_
-#define HUEFILE_H_
 
 #include <vector>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
-#include "day.h"
 #include "file.h"
+#include "day.h"
 
-class HUEFile: public File {
+class FileDec: public File {
 public:
-    HUEFile();
-    HUEFile(const boost::filesystem::path);
-    virtual ~HUEFile();
+    FileDec();
+    FileDec(const boost::filesystem::path, float sr = 10, float ss = 10);
+    virtual ~FileDec();
 
     void info () const;
 
-
     Day read (bool saveData = false);
-
-
-
-private:
-
-    int elevation;
-    int column;
-
 };
 
-#endif /* HUEFILE_H_ */
+
+#endif /* FILEDEC_H_ */

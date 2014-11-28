@@ -30,10 +30,10 @@
 using namespace std;
 
 ostream& operator << (ostream& stream, Coordinates& c) {
-	
-	stream << "---------- Latitude: \33[1;36m" << c.latitude << "\33[0m" << " ---------- Longitude: \33[1;36m" << c.longitude << "\33[0m" << endl;
 
-	return stream;
+    stream << "---------- Latitude: \33[1;36m" << c.latitude << "\33[0m" << " ---------- Longitude: \33[1;36m" << c.longitude << "\33[0m" << endl;
+
+    return stream;
 }
 
 
@@ -49,65 +49,65 @@ Console::~Console() {
 }
 
 void Console::printCoordinates (Coordinates c) {
-		
-		cout << c;
-	
+
+        cout << c;
+
 }
 
 void Console::placeInfo (Day d, int measures = 0){
-		
-		cout << "\33[1;36m" << d.getStation() << " " << d.getRealCoordinates().latitude << " " << d.getRealCoordinates().longitude <<"\33[0m day info: " << d.getDay() << " " << d.getYear();
-		
-		if (measures != 0)
-			cout <<" Measures taken: " << measures;
-			
-		cout << endl;
-		cout <<"Day info: " << d.getDay() << " " << d.getYear() << ". Transitions: " << d.getTransitions() << ". Sunrise: " << d.getSunrise() <<  " Sunset: " << d.getSunset() << endl;
+
+        cout << "\33[1;36m" << d.getStation() << " " << d.getRealCoordinates().latitude << " " << d.getRealCoordinates().longitude <<"\33[0m day info: " << d.getDay() << " " << d.getYear();
+
+        if (measures != 0)
+            cout <<" Measures taken: " << measures;
+
+        cout << endl;
+        cout <<"Day info: " << d.getDay() << " " << d.getYear() << ". Transitions: " << d.getTransitions() << ". Sunrise: " << d.getSunrise() <<  " Sunset: " << d.getSunset() << endl;
 
 }
 
 
 void Console::totalFiles(const int filesize, const int validsize){
-		
-		cout << "\33[1;1m There are " << filesize <<" files." << "\33[0m" << endl;
-		cout << "\33[1;32m" << validsize <<" are valid files." << "\33[0m" << endl;
-	
+
+        cout << "\33[1;1m There are " << filesize <<" files." << "\33[0m" << endl;
+        cout << "\33[1;32m" << validsize <<" are valid files." << "\33[0m" << endl;
+
 }
 
 
 void Console::validFiles(const string name, const string ppath, const int skipFile){
-	
-		if(skipFile == 0){
-		
-			cout << "File reading \33[1;34m" << ppath << "\33[1;32m valid" << "\33[0m" << endl;//mirar
-		}
+
+        if(skipFile == 0){
+
+            cout << "File reading \33[1;34m" << ppath << "\33[1;32m valid" << "\33[0m" << endl;//mirar
+        }
 }
 
 void Console::invalidFiles(const string name, const string ppath, const int skipFile){
-		
-		cout << "Reading File  \33[1;34m" << ppath << " is invalid,";
-	
-		switch (skipFile){
-			case 1: 
-				cout << "\33[1;31m error 1" << "\33[0m" << endl;
-				break;
-			case 2: 
-				cout << "\33[1;31m bad extension" << "\33[0m" << endl;
-				break;
-			case 4: 
-				cout << "\33[1;31m error flag is 1" << "\33[0m" << endl;
-				break;
-			case 7: 
-				cout << "\33[1;31m equinox" << "\33[0m" << endl;
-				break;
-		}
+
+        cout << "Reading File  \33[1;34m" << ppath << " is invalid,";
+
+        switch (skipFile){
+            case 1:
+                cout << "\33[1;31m error 1" << "\33[0m" << endl;
+                break;
+            case 2:
+                cout << "\33[1;31m bad extension" << "\33[0m" << endl;
+                break;
+            case 4:
+                cout << "\33[1;31m error flag is 1" << "\33[0m" << endl;
+                break;
+            case 7:
+                cout << "\33[1;31m equinox" << "\33[0m" << endl;
+                break;
+        }
 }
 
-	
-	
+
+
 //IMPORTANT NOTE: findArguments functions have not been tested (just one of them).
 //It is possible to have bugs here with the index numbering.
-	
+
 int Console::findArguments (int argc, char** argv, const char* argument_name)
 {
   for (int i = 1; i < argc; ++i)
@@ -125,9 +125,9 @@ int Console::findArguments (int argc, char** argv, const char* argument_name)
 int Console::parseArguments (int argc, char** argv, const char* str, std::string &val)
 {
   int index = findArguments (argc, argv, str);
-  
+
   if (index > 1  && index < argc)
-	val = argv[index];
+    val = argv[index];
 
   return index;
 }
@@ -204,16 +204,16 @@ int Console::parseArguments (int argc, char** argv, const char* str, vector<stri
   int index = findArguments (argc, argv, str);
   int i = index;
   //TODO: a default filetype should be included. Probably in the Options constructor.
-	string s;
-	do {
-		i++;
-		if (i > argc - 1) // Checking the limits
-			s = '-';
-		else {
-			s = argv[i];
-			vals.push_back(s);
-		}		
-	} while (s[0] != '-');
+    string s;
+    do {
+        i++;
+        if (i > argc - 1) // Checking the limits
+            s = '-';
+        else {
+            s = argv[i];
+            vals.push_back(s);
+        }
+    } while (s[0] != '-');
 
   return index;
 }
@@ -223,31 +223,51 @@ int Console::parseArguments (int argc, char** argv, const char* str, vector<int>
   int index = findArguments (argc, argv, str);
   int i = index;
   //TODO: a default filetype should be included. Probably in the Options constructor.
-	string s;
-	int val;
-	do {
-		i++;
-		if (i > argc - 1) // Checking the limits
-			s = '-';
-		else {
-			val =atoi(argv[i]);
-			vals.push_back(val);
-		}		
-	} while (s[0] != '-');
+    string s;
+    int val;
+    do {
+        i++;
+        if (i > argc - 1) // Checking the limits
+            s = '-';
+        else {
+            val =atoi(argv[i]);
+            vals.push_back(val);
+        }
+    } while (s[0] != '-');
 
   return index;
 }
-	
-	
+
+int Console::parseArguments (int argc, char** argv, const char* str, vector<float> & vals)
+{
+  int index = findArguments (argc, argv, str);
+  int i = index;
+  //TODO: a default filetype should be included. Probably in the Options constructor.
+    string s;
+    float val;
+    do {
+        i++;
+        if (i > argc - 1) // Checking the limits
+            s = '-';
+        else {
+            val =atof(argv[i]);
+            vals.push_back(val);
+        }
+    } while (s[0] != '-');
+
+  return index;
+}
+
+
 void Console::warning(const std::string &val) {
-	cout << "\33[1;33m" << "WARNING!: " << val << "\33[0m" << endl;
-	
+    cout << "\33[1;33m" << "WARNING!: " << val << "\33[0m" << endl;
+
 }
 
 
 void Console::error(const std::string &val) {
-	cout << "\33[1;31m" << "ERROR!: " << val << "\33[0m" << endl;
-	
+    cout << "\33[1;31m" << "ERROR!: " << val << "\33[0m" << endl;
+
 }
 
 

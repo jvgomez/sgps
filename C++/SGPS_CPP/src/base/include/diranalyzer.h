@@ -103,7 +103,6 @@ private:
 	std::vector<File*> validFiles;
 	std::vector<File*> invalidFiles;
 	std::vector<char> types;
-
 };
 
 #endif /* DIRANALYZER_H_ */

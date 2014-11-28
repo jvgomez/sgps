@@ -24,6 +24,7 @@
 #include <boost/progress.hpp>
 #include "../include/sgps.h"
 #include "../include/options.h"
+#include "../include/console.h"
 #include "../include/astroalg.h"
 
 
@@ -117,6 +118,7 @@ void SGPS::parseArguments (int argc, char* argv[]){
 
     Options * opt = Options::Instance();
     string v("");
+    vector<float> vals;
 
     opt -> setWorldPath (argv[1]);//PARA GUARDAR DONDE ESTA EL ARCHIVO DE WORLD.DAT
 
@@ -127,6 +129,14 @@ void SGPS::parseArguments (int argc, char* argv[]){
         if (index > 1) { // index > 1 means that this option has been found in the arguments.
             opt-> setLoggerOn();
             Logger::startFiles();
+        }
+
+        index = Console::parseArguments(argc, argv, "-s", vals);
+        if (index > 1){
+            if (vals.size() != 2)
+                Console::error("-s option (set light thresholds) not correctly set. It needs two values.");
+            else
+                opt->setLimits(vals);
         }
 
         index = Console::parseArguments(argc, argv, "-c", v);

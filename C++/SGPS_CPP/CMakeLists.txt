@@ -97,19 +97,20 @@ INSTALL(TARGETS sgps
 
 
 INSTALL(FILES src/base/include/sgps.h 
-	      src/base/include/astroalg.h 
-	      src/base/include/coordinates.h 
-	      src/base/include/celestialmodel.h 
-	      src/base/include/console.h 
-	      src/base/include/day.h 
-	      src/base/include/diranalyzer.h 
-	      src/base/include/file.h 
-	      src/base/include/noaafile.h 
-	      src/base/include/gnuplot_i.h 
-	      src/base/include/logger.h 
-	      src/base/include/options.h 
-	      src/base/include/plotter.h
-	      src/base/include/huefile.h
+          src/base/include/astroalg.h 
+          src/base/include/coordinates.h 
+          src/base/include/celestialmodel.h 
+          src/base/include/console.h 
+          src/base/include/day.h 
+          src/base/include/diranalyzer.h 
+          src/base/include/file.h 
+          src/base/include/noaafile.h 
+          src/base/include/gnuplot_i.h 
+          src/base/include/logger.h 
+          src/base/include/options.h 
+          src/base/include/plotter.h
+          src/base/include/huefile.h
+          src/base/include/filedec.h
   DESTINATION include/sgps)
 
 

@@ -22,8 +22,6 @@
 #define OPTIONS_H_
 
 
-
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -105,6 +103,10 @@ public:
      * */
     void setOneGraphdOn ()						{onegraph_ = true;}
 
+    void setLimits(const std::vector<float> limits) {
+        limits_ = limits;
+    }
+
     /**
      * Add a new file type to be taken into account. This is the way to
      * specify the program which kind of files has to take into account.
@@ -179,6 +181,8 @@ public:
      * */
     void setColumnNumber(const int &s) 									{column_number = s;}
 
+    std::vector<float>& getLimits()                         {return limits_;}
+
 protected:
     Options();
     Options (const Options & ) ;
@@ -198,6 +202,8 @@ private:
     std::string worldpath;
     std::string outputpath;
     int column_number;
+
+    std::vector<float> limits_;
 
     std::vector<std::string> fileTypes_;
 

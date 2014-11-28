@@ -20,7 +20,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "../include/file.h"
+#include "../include/filedec.h"
 #include "../include/options.h"
 #include "../include/logger.h"
 #include "../include/console.h"
@@ -28,32 +28,23 @@
 using namespace std;
 using namespace boost::filesystem;
 
-File::File()
-{
-    setSkipFile(0);
+
+FileDec::FileDec() {
 }
 
-File::File(const path p, float sr, float ss)
-{
-    //TODO: name  = p.filename().string(); for Boost >1.46
-    name  = p.filename().string();
-    ppath = p.string();
-    size  = file_size(p);
-    sslimit = ss;
-    srlimit = sr;
-    std::cout << " File const " << sr << "  " << ss << std::endl;
-}
-
-File::~File()
-{
-}
-
-void File::info () const {
-    cout << "Basis file: " << name << endl;
+FileDec::FileDec(const path p, float sr, float ss) : File(p, sr, ss){
+    std::cout << " dec" << std::endl;
 }
 
 
-Day File::read (bool saveData) {
+FileDec::~FileDec() {
+}
+
+void FileDec::info () const {
+    cout << "Generic file with decimal hours: " << name << endl;
+}
+
+Day FileDec::read (bool saveData) {
 
     Options * opt =  Options::Instance();
 
@@ -62,9 +53,7 @@ Day File::read (bool saveData) {
 
     d.setStation ("generic station");
 
-
     stored.open(ppath.c_str(), fstream::in);
-
 
     if (stored.good()) {
         //TODO: Improve these lines with "getline" command. Much easier to understand.
@@ -144,9 +133,7 @@ Day File::read (bool saveData) {
 
             stored >> auxvalues;
             values.push_back(auxvalues);
-
         }
-
 
         File::setSkipFile(0);
         d.setTransitions(0);
@@ -161,38 +148,17 @@ Day File::read (bool saveData) {
             d.setValues (values);
         }
 
-
         if (opt->getConsoleOp() == true || opt->getFileReadedOp() == true){
-            Console::validFiles (name, ppath, File::getSkipFile());
+            Console::validFiles (name, ppath, FileDec::getSkipFile());
         }
         if (opt->getConsoleOp() == true){
             Console::placeInfo(d, values.size());
         }
         if (opt->getLoggerOp() == true){
             Logger::placeInfo(d, values.size());
-            Logger::validFiles(name, ppath, File::getSkipFile(), d);//save in a file the number of valid files
+            Logger::validFiles(name, ppath, FileDec::getSkipFile(), d);//save in a file the number of valid files
         }
 
         return d;
-
-    }
-
-}
-
-
-float File::findSunrise(const vector<float> & times, const vector<float> & values) {
-    for(int i=1;i<values.size()-2;i++) {
-
-        if(values[i]>=srlimit && values[i+1]>=srlimit && values[i+2]>=srlimit)
-            return times[i];
-    }
-
-}
-
-float File::findSunset(const vector<float> & times, const vector<float> & values) {
-    for(int i=values.size();i!=0;i--) {
-
-        if(values[i]>=sslimit && values[i-1]>=sslimit && values[i-2]>=sslimit)
-            return times[i];
     }
 }

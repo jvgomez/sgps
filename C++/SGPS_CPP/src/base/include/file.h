@@ -51,7 +51,7 @@ public:
      *
      * @param p path of the file.
      * */
-    File(const boost::filesystem::path);
+    File(const boost::filesystem::path, float srlimit = 10, float sslimit = 10);
 
     /**
      * Not used.
@@ -151,6 +151,7 @@ public:
      * @see getValues()
      * */
     std::vector <float> getTimes() 			{return times;}
+
     /**
      * Method to get brightness values vector.
      * @return brightness values vector
@@ -158,13 +159,23 @@ public:
      * */
     std::vector <float> getValues() 		{return values;}
 
-    protected:
+    /**
+     * Method to set the sunrise and sunset light threshold values.
+     * @return brightness values vector
+     * @see getTimes()
+     * */
+    void setLimits(float sr, float ss){
+        srlimit = sr;
+        sslimit = ss;
+    }
+
+protected:
     std::string name;
     std::string ppath; //It is ppath because path is a type of the boost filesystem.
     unsigned int size;
 
     int skipFile;
-    float sslimit;
+    float sslimit, srlimit;
 
     std::vector <float> times;
     std::vector <float> values;
