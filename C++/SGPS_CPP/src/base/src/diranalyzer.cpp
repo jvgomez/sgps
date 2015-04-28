@@ -283,7 +283,7 @@ Day DirAnalyzer::extractDay(string path){
     if(!lim.size())
         default_vals = true;
 
-    if (opt->isFileType("generic"))
+    if (opt->isFileType("genericfile"))
     {
         if (default_vals)
             f = new File(path);

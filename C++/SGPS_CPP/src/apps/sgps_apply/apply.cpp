@@ -33,6 +33,8 @@ int main (int argc, char* argv[]) {
     d.setSGPSCoordinates(CelestialModel::inverseCelestialModel(d));
     d.getError();
     
+    d.info();
+    
     Coordinates c = d.getErrorDegree();
     std::cout << "Degrees error: Lat " << c.latitude << "\tLong " << c.longitude << '\n'; 
     c = d.getErrorPercent();
