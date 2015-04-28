@@ -35,7 +35,6 @@ File::File()
 
 File::File(const path p, float sr, float ss)
 {
-    //TODO: name  = p.filename().string(); for Boost >1.46
     name  = p.filename().string();
     ppath = p.string();
     size  = file_size(p);
